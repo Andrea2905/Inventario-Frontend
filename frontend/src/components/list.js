@@ -49,6 +49,7 @@ export function createTable(
   const renderRows = (data) => {
     if (data.length === 0)
       return `<tr><td colspan="7" class="text-center text-muted">Sin resultados</td></tr>`;
+
     return data
       .map(
         (item) => `
@@ -121,8 +122,7 @@ export function createTable(
 
     const filtered = items.filter((i) => {
       const matchesSearch =
-        i.name.toLowerCase().includes(search) ||
-        String(i._id).includes(search);
+        i.name.toLowerCase().includes(search) || String(i._id).includes(search);
       const [day, mo, yr] = i.date.split("-");
       const matchesYear = !year || yr === year;
       const matchesMonth = !month || mo === String(month).padStart(2, "0");
@@ -131,26 +131,28 @@ export function createTable(
     });
 
     tbody.innerHTML = renderRows(filtered);
-
-    // Reasignar eventos a los nuevos botones
-    tbody.querySelectorAll(".edit").forEach((btn) =>
-      btn.addEventListener("click", (e) => {
-        const id = e.target.closest("button").dataset.id;
-        const item = items.find((it) => it._id === Number(id));
-        if (item) onEdit(item);
-      })
-    );
-    tbody.querySelectorAll(".delete").forEach((btn) =>
-      btn.addEventListener("click", (e) => {
-        const id = e.target.closest("button").dataset.id;
-        onDelete(id);
-      })
-    );
   }
 
   [searchInput, yearFilter, monthFilter, categoryFilter].forEach((el) =>
     el.addEventListener("input", applyFilters)
   );
+
+  // ===== EVENTOS DE BOTONES (EDITAR / ELIMINAR) =====
+  table.addEventListener("click", (e) => {
+    const editBtn = e.target.closest(".edit");
+    const deleteBtn = e.target.closest(".delete");
+
+    if (editBtn) {
+      const id = editBtn.dataset.id;
+      const item = items.find((it) => it._id === Number(id));
+      if (item) onEdit(item);
+    }
+
+    if (deleteBtn) {
+      const id = deleteBtn.dataset.id;
+      onDelete(id);
+    }
+  });
 
   // ===== MODO OSCURO =====
   const updateTableTheme = () => {
@@ -161,9 +163,13 @@ export function createTable(
       table.classList.add("table-dark");
     }
   };
+
   updateTableTheme();
   const observer = new MutationObserver(updateTableTheme);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
 
   return container;
 }
