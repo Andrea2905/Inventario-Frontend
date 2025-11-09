@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestor de Productos</title>
+
+    <!-- 🧩 Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- 🎨 Iconos Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- ✨ Fuente moderna -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 🎨 Estilos personalizados -->
+    <link rel="stylesheet" href="/src/style.css" />
+
+    <!-- 🧠 Metadatos -->
+    <meta
+      name="description"
+      content="Aplicación moderna para registrar, listar y administrar productos con modo oscuro/claro."
+    />
+    <meta name="theme-color" content="#9b59b6" />
+  </head>
+
+  <body>
+    <!-- 🌐 NAVBAR -->
+    <nav
+      class="navbar px-4 py-3 d-flex justify-content-between align-items-center shadow-sm"
+      id="navbar"
+    >
+      <h3 class="text-purple m-0 fw-semibold">📦 Gestor de Productos</h3>
+
+      <!-- 🌗 Interruptor de tema -->
+      <div class="form-check form-switch d-flex align-items-center">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="themeSwitch"
+          aria-label="Cambiar entre modo claro y oscuro"
+        />
+        <label
+          class="form-check-label ms-2 fw-semibold"
+          for="themeSwitch"
+          id="themeLabel"
+        >
+          Modo Claro
+        </label>
+      </div>
+    </nav>
+
+    <!-- 🧭 CONTENEDOR PRINCIPAL -->
+    <main class="container py-4">
+      <!-- 🔖 TABS DE NAVEGACIÓN -->
+      <ul class="nav nav-tabs" id="appTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="btnRegistrar"
+            type="button"
+            role="tab"
+            aria-selected="true"
+          >
+            Registrar
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="btnProductos"
+            type="button"
+            role="tab"
+            aria-selected="false"
+          >
+            Productos
+          </button>
+        </li>
+      </ul>
+
+      <!-- 💡 CONTENIDO PRINCIPAL -->
+      <div id="app" class="mt-4"></div>
+    </main>
+
+    <!-- 🚀 Script principal -->
+    <script type="module" src="/src/main.js"></script>
+
+    <!-- ⚙️ Bootstrap JS (con Popper incluido) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
